@@ -25,13 +25,13 @@
     "dev": "cross-env npm run build:server && DATABASE_TYPE=postgres DATABASE_URL=postgres://postgres.sscozsohqhmrzznuechx:chiragpatel2024@aws-0-us-west-1.pooler.supabase.com:5432/postgres MEDUSA_ADMIN_ONBOARDING_TYPE=nextjs STORE_CORS=http://localhost:8000,http://72.167.151.168:7001 MEDUSA_ADMIN_ONBOARDING_NEXTJS_DIRECTORY=flagstaff-wholesale-storefront ADMIN_CORS=http://72.167.151.168:7001 MEDUSA_BACKEND_URL=http://72.167.151.168:9000 medusa develop"
   },
   "dependencies": {
-    "@medusajs/admin": "7.1.10",
+    "@medusajs/admin": "7.1.11",
     "@medusajs/cache-inmemory": "^1.8.9",
     "@medusajs/cache-redis": "^1.8.9",
     "@medusajs/event-bus-local": "^1.9.7",
     "@medusajs/event-bus-redis": "^1.8.10",
     "@medusajs/file-local": "^1.0.3",
-    "@medusajs/medusa": "1.20.1",
+    "@medusajs/medusa": "1.20.2",
     "@tanstack/react-query": "4.22.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",

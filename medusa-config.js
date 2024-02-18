@@ -53,6 +53,30 @@ const plugins = [
       },
     },
   },
+  {
+    resolve: `medusa-plugin-algolia`,
+    options: {
+      applicationId: process.env.ALGOLIA_APP_ID,
+      adminApiKey: process.env.ALGOLIA_ADMIN_API_KEY,
+      settings: {
+        products: {
+          indexSettings: {
+            searchableAttributes: ["title", "description"],
+            attributesToRetrieve: [
+              "id",
+              "title",
+              "description",
+              "handle",
+              "thumbnail",
+            ],
+          },
+          transformer: (product) => ({ 
+            objectID: product.id,
+          }),
+        },
+      },
+    },
+  },
 ];
 
 const modules = {
@@ -68,6 +92,12 @@ const modules = {
       redisUrl: REDIS_URL
     }
   },*/
+  eventBus: {
+    resolve: "@medusajs/event-bus-redis",
+    options: {
+      redisUrl: process.env.EVENTS_REDIS_URL,
+    },
+  }
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */
@@ -78,7 +108,7 @@ const projectConfig = {
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
   // Uncomment the following lines to enable REDIS
-  // redis_url: REDIS_URL
+  redis_url: process.env.EVENTS_REDIS_URL
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */

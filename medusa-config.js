@@ -99,10 +99,7 @@ const modules = {
     }
   },*/
   eventBus: {
-    resolve: "@medusajs/event-bus-redis",
-    options: {
-      redisUrl: process.env.EVENTS_REDIS_URL,
-    },
+    resolve: "@medusajs/event-bus-local",
   }
 };
 
@@ -114,7 +111,7 @@ const projectConfig = {
   database_url: process.env.DATABASE_URL,
   admin_cors: process.env.ADMIN_CORS,
   // Uncomment the following lines to enable REDIS
-  redis_url: process.env.EVENTS_REDIS_URL
+  // redis_url: process.env.EVENTS_REDIS_URL
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */

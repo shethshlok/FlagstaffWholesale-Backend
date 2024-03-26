@@ -30,7 +30,7 @@
     "@medusajs/cache-redis": "^1.8.9",
     "@medusajs/event-bus-local": "^1.9.8",
     "@medusajs/file-local": "^1.0.3",
-    "@medusajs/medusa": "1.20.1",
+    "@medusajs/medusa": "1.20.3",
     "@react-pdf/renderer": "^3.4.0",
     "@rsc-labs/medusa-store-analytics": "^0.9.0",
     "@tanstack/react-query": "4.22.0",

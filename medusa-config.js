@@ -69,6 +69,9 @@ const plugins = [
               "handle",
               "thumbnail",
               "images",
+              "variants",
+              "variant_sku",
+              "options",
             ],
           },
           transformer: (product) => ({ 

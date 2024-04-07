@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { WidgetConfig, CustomerDetailsWidgetProps } from "@medusajs/admin";
 import { useAdminUpdateCustomer } from "medusa-react";
+import { Label, Switch } from "@medusajs/ui"
 
 const CustomerLicenseWidget = ({ customer }: CustomerDetailsWidgetProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [licenseNumber, setLicenseNumber] = useState(customer.licenseNumber);
   const [newLicenseNumber, setNewLicenseNumber] = useState(licenseNumber);
+  const [activated, setActivated] = useState<boolean>(customer.activated);
 
   const updateCustomer = useAdminUpdateCustomer(customer.id);
 
@@ -18,6 +20,7 @@ const CustomerLicenseWidget = ({ customer }: CustomerDetailsWidgetProps) => {
       // Call API to update license number
       await updateCustomer.mutateAsync({
         licenseNumber: newLicenseNumber,
+        activated: activated,
       });
       setLicenseNumber(newLicenseNumber);
       setIsEditing(false);
@@ -32,12 +35,37 @@ const CustomerLicenseWidget = ({ customer }: CustomerDetailsWidgetProps) => {
     setIsEditing(false);
   };
 
+  const handleActivateToggle = async () => {
+    try {
+      // Update activated state locally first
+      const newActivatedValue = !activated;
+      console.log("New Activated Value:", newActivatedValue); // Log the new value
+      setActivated(newActivatedValue);
+  
+      // Call API to toggle activation
+      await updateCustomer.mutateAsync({
+        activated: newActivatedValue,
+        licenseNumber: licenseNumber,
+      });
+    } catch (error) {
+      // If there's an error, revert activated state
+      console.error("Error toggling activation:", error);
+      setActivated(activated);
+    }
+
+  }
+
   return (
-    <div className="mt-6 flex space-x-6">
-      <div className="w-full bg-white rounded-lg p-4 border border-gray-200">
+    <div className="mt-6 flex flex-row space-x-6">
+     <div className="w-full bg-white rounded-lg p-4 border border-gray-200 flex items-center justify-evenly">
+        <Label htmlFor="manage-inventory-checked">Activate Account</Label>
+        <Switch id="manage-inventory-checked" checked={customer.activated} onClick={handleActivateToggle} />
+      </div>
+
+      <div className="w-full flex flex-row bg-white rounded-lg p-4 border border-gray-200">
         <div className="text-sm text-gray-500 mb-1">License Number:</div>
         {!isEditing ? (
-          <div className="text-lg text-gray-900">{licenseNumber || "N/A"}</div>
+          <div className="text-lg text-gray-900 pl-5">{licenseNumber || "N/A"}</div>
         ) : (
           <input
             type="text"

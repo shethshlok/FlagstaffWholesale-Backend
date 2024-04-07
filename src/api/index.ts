@@ -5,12 +5,16 @@ import {
 import {
    StorePostCustomersReq as MedusaStorePostCustomersReq,
   } from "@medusajs/medusa/dist/api/routes/store/customers/create-customer";
-import { IsString } from "class-validator";
+import { IsString, IsBoolean } from "class-validator";
 
 class AdminPostCustomersCustomerReq extends MedusaAdminPostCustomersCustomerReq {
    @IsString()
    licenseNumber: string;
+
+   @IsBoolean()
+   activated: boolean; // Default value set to false
 }
+
 
 class StorePostCustomersReq extends MedusaStorePostCustomersReq {
    @IsString()

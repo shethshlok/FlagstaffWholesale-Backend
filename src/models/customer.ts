@@ -7,5 +7,8 @@ import {
 @Entity()
 export class Customer extends MedusaCustomer {
   @Column()
-  licenseNumber: string
+  licenseNumber: string;
+
+  @Column({ default: false }) // Example: Setting default value to true
+  activated: boolean;
 }

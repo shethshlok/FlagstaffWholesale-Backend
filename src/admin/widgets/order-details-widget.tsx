@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { PDFDownloadLink, PDFViewer, Document, Page, Text, View, StyleSheet, Image } from "@react-pdf/renderer";
 import { WidgetConfig, OrderDetailsWidgetProps } from "@medusajs/admin";
 // import companyLogo from ".../build/images/logo.jpeg";
+import { FlyingBox } from "@medusajs/icons"
 
 const OrderInvoiceButtonWidget = ({ order }: OrderDetailsWidgetProps) => {
   const [showInvoice, setShowInvoice] = useState(false);
@@ -76,7 +77,7 @@ const logo = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAY
                     <Text style={{ ...styles.tableColumn, marginRight: 70 }}>{item.description}</Text>
                     <Text style={styles.tableColumn}>${(item.unit_price / 100).toFixed(2)}</Text>
                     <Text style={{ ...styles.tableColumn, marginLeft: 30 }}>{item.quantity}</Text>
-                    <Text style={styles.tableColumn}>${(item.total / 100).toFixed(2)}</Text>
+                    <Text style={styles.tableColumn}>${(item.total ?? 0 / 100).toFixed(2)}</Text>
                   </View>
                   <View style={styles.hr}></View>
                 </View>
@@ -261,11 +262,12 @@ const logo = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAY
   return (
     <div className="mt-6 flex justify-end pb-5">
       <button
-        className="btn btn-secondary btn-small flex items-center py-2 px-4 bg-white text-black"
-        onClick={handleGenerateInvoice}
-      >
-        Generate Invoice
-      </button>
+      className="btn btn-secondary btn-small flex items-center py-2 px-4 bg-white text-black"
+      onClick={handleGenerateInvoice}
+    >
+      <FlyingBox className="mr-2" /> {/* Add margin-right utility class here */}
+      Generate Invoice
+    </button>
       {showInvoice && (
         <div style={styles.overlay}>
           <div style={styles.buttonContainer}>

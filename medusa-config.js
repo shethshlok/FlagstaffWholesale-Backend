@@ -23,7 +23,7 @@ try {
 
 // CORS when consuming Medusa from admin
 const ADMIN_CORS =
-  process.env.ADMIN_CORS || "http://localhost:7001,http://72.167.151.168:7001";
+  process.env.ADMIN_CORS || "http://localhost:7001,https://admin.flagstaffwholesale.com";
 
 // CORS to avoid issues when consuming Medusa from a client
 const STORE_CORS = process.env.STORE_CORS || "http://localhost:8000";
@@ -40,7 +40,7 @@ const plugins = [
     resolve: `@medusajs/file-local`,
     options: {
       upload_dir: "uploads",
-      backend_url: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://72.167.151.168:9000",
+      backend_url: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "https://admin.flagstaffwholesale.com",
     },
   },
   {
